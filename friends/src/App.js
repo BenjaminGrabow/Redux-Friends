@@ -1,22 +1,23 @@
 import React from 'react';
+import LoginPage from "./Components/Login/LoginPage";
+import { Link, Route } from 'react-router-dom';
+import PrivateRoute from './Components/Login/PrivateRoute';
+import Friends from './Components/Friends/Friends';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+        <li>
+          <Link to="/protected">Protected Page</Link>
+        </li>
+      </ul>
+      <Route path="/login" component={LoginPage} />
+      <PrivateRoute exact path="/protected" component={Friends} />
     </div>
   );
 }
