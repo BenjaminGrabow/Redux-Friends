@@ -17,6 +17,10 @@ width: 50%;
 margin: 1rem;
 }
 
+.off {
+        display:none;
+}
+
 `;
 
 class Friends extends React.Component {
@@ -25,7 +29,11 @@ class Friends extends React.Component {
                 this.state = {
                         name: '',
                         age: '',
-                        email: ''
+                        email: '',
+                        input: 'off',
+                        nameUpdate: '',
+                        ageUpdate: '',
+                        emailUpdate: ''
                 }
         }
 
@@ -39,16 +47,23 @@ class Friends extends React.Component {
                 });
         };
 
-        // updateIt = (id) => {
-        //         this.props.update(id, this.state.name, this.state.age, this.state.email);
+        showInput = () => {
+                this.setState({
+                        input: 'on'
+                });
+        };
+
+        updateIt = (id) => {
+                this.props.update(id, this.state.nameUpdate, this.state.ageUpdate, this.state.emailUpdate);
 
 
-        // this.setState({
-        //         name: '',
-        //         age: '',
-        //         email: ''
-        // });
-        // };
+                this.setState({
+                        nameUpdate: '',
+                        ageUpdate: '',
+                        emailUpdate: '',
+                        input: 'off'
+                });
+        };
 
         adder = () => {
                 this.props.add(this.state.name, this.state.age, this.state.email);
@@ -68,13 +83,32 @@ class Friends extends React.Component {
                                                         this.props.deleter(friend.id)}>
                                                         Delete
                                                                  </button>
-                                                <button onClick={() =>
-                                                        this.props.update(friend.id,
-                                                                this.state.name,
-                                                                this.state.age,
-                                                                this.state.email)}>
-                                                        update
+                                                <button onClick={
+                                                        this.showInput}>
+                                                        Update
                                                                    </button>
+                                                <div
+                                                        className={this.state.input === 'off' ? 'off' : null}>
+                                                        <input
+                                                                onChange={this.handleChange}
+                                                                name="nameUpdate"
+                                                                type="text"
+                                                                value={this.state.nameUpdate} />
+                                                        <input
+                                                                onChange={this.handleChange}
+                                                                name="ageUpdate"
+                                                                type="number"
+                                                                value={this.state.ageUpdate} />
+                                                        <input
+                                                                onChange={this.handleChange}
+                                                                name="emailUpdate"
+                                                                type="text"
+                                                                value={this.state.emailUpdate} />
+                                                        <button onClick={() =>
+                                                                this.updateIt(friend.id)}>
+                                                                update
+                                                                   </button>
+                                                </div>
                                         </div>
                                 })}
                                 <input
