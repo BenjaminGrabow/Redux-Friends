@@ -7,6 +7,8 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOADING = 'LOADING';
 export const SUCCESS = 'SUCCESS';
 export const ERROR = 'ERROR';
+export const DELETE = 'DELETE';
+export const UPDATE = 'UPDATE';
 
 export const login = creds => dispatch => {
         dispatch({ type: LOGIN_START });
@@ -26,4 +28,11 @@ export const fetch = () => dispatch => {
                 }).catch(err => {
                        dispatch({ type: ERROR})
                 })
-}
+};
+
+export const deleter = (id) => dispatch => {
+        axiosWithAuth().delete(`http://localhost:5000/api/friends/${id}`)
+        .then(res => {
+                dispatch({ type: DELETE, payload: res.data})
+        });
+};

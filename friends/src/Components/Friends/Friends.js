@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetch } from '../../store/actions';
+import { fetch, deleter, update } from '../../store/actions';
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
@@ -35,8 +35,8 @@ class Friends extends React.Component {
                                                 <h1>{friend.name}</h1>
                                                 <p>{friend.age}</p>
                                                 <p>{friend.email}</p>
-                                                <button onClick={() => this.props.delete(friend.id)}>Delete</button>
-                                                <button onClick={() => this.props.delete(friend.id)}>Delete</button>
+                                                <button onClick={() => this.props.deleter(friend.id)}>Delete</button>
+                                                <button onClick={() => this.props.deleter(friend.id)}>update</button>
                                         </div>
                                 })}
                         </StyledDiv>
@@ -52,4 +52,4 @@ const mapStateToProps = state => {
         }
 };
 
-export default connect(mapStateToProps, { fetch })(Friends);
+export default connect(mapStateToProps, { fetch, deleter, })(Friends);
