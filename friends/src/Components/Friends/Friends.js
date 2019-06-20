@@ -67,6 +67,12 @@ class Friends extends React.Component {
 
         adder = () => {
                 this.props.add(this.state.name, this.state.age, this.state.email);
+
+                this.setState({
+                        name: '',
+                        age: '',
+                        email: ''
+                });
         };
 
         render() {
