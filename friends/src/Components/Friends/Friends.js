@@ -6,9 +6,6 @@ import 'react-animated-slider/build/horizontal.css';
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
 
 .friend {
 background: #C6FFDD;  /* fallback for old browsers */
@@ -16,7 +13,7 @@ background: -webkit-linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);  /* Ch
 background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 border-radius: 50%;
 width: 50%;
-margin: 1rem;
+margin-left: 17rem;
 }
 
 .off {
@@ -80,7 +77,8 @@ class Friends extends React.Component {
   render() {
     return (
       <StyledDiv>
-        <Slider>
+        <Slider
+        className="slider">
         {this.props.friends.map(friend => {
           return <div
             className="friend"
