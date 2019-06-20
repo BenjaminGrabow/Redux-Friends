@@ -23,16 +23,28 @@ export const login = creds => dispatch => {
 export const fetch = () => dispatch => {
         dispatch({ type: LOADING })
         axiosWithAuth()
-        .get('http://localhost:5000/api/friends').then(res => {
-                        dispatch({ type: SUCCESS, payload: res.data})
+                .get('http://localhost:5000/api/friends').then(res => {
+                        dispatch({ type: SUCCESS, payload: res.data })
                 }).catch(err => {
-                       dispatch({ type: ERROR})
+                        dispatch({ type: ERROR })
                 })
 };
 
 export const deleter = (id) => dispatch => {
         axiosWithAuth().delete(`http://localhost:5000/api/friends/${id}`)
-        .then(res => {
-                dispatch({ type: DELETE, payload: res.data})
-        });
+                .then(res => {
+                        dispatch({ type: DELETE, payload: res.data })
+                });
+};
+
+export const update = (id, name, age, email) => dispatch => {
+        const newFriend = {
+                name: name,
+                age: age,
+                email: email
+        }
+        axiosWithAuth().put(`http://localhost:5000/api/friends/${id}`, newFriend)
+                .then(res => {
+                        dispatch({ type: UPDATE, payload: res.data })
+                });
 };

@@ -20,10 +20,24 @@ margin: 1rem;
 `;
 
 class Friends extends React.Component {
+        constructor(props) {
+                super(props);
+                this.state = { 
+                        name: '',
+                        age: '',
+                        email: ''
+                 }
+        }
 
         componentDidMount = () => {
                 this.props.fetch();
-        }
+        };
+
+        handleChange = (e) => {
+                this.setState({
+                        [e.target.name]: e.target.value
+                });
+        };
 
         render() {
                 return (
@@ -36,9 +50,12 @@ class Friends extends React.Component {
                                                 <p>{friend.age}</p>
                                                 <p>{friend.email}</p>
                                                 <button onClick={() => this.props.deleter(friend.id)}>Delete</button>
-                                                <button onClick={() => this.props.deleter(friend.id)}>update</button>
+                                                <button onClick={() => this.props.update(friend.id, this.state.name, this.state.age, this.state.email)}>update</button>
                                         </div>
                                 })}
+                                <input onChange={this.handleChange} name="name" type="text"/>
+                                <input onChange={this.handleChange} name="age" type="number"/>
+                                <input onChange={this.handleChange} name="email" type="text"/>
                         </StyledDiv>
                 );
         }
@@ -52,4 +69,4 @@ const mapStateToProps = state => {
         }
 };
 
-export default connect(mapStateToProps, { fetch, deleter, })(Friends);
+export default connect(mapStateToProps, { fetch, deleter, update })(Friends);

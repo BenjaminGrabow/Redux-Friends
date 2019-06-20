@@ -23,10 +23,13 @@ const reducer = (state = initialState, action) => {
 
                 case types.ERROR:
                         return { friends: [], loading: false, error: 'ERROR NETWORK' }
-                
+
                 case types.DELETE:
                         return { ...state, friends: action.payload }
-                        default: return state;
+
+                case types.UPDATE:
+                        return { ...state, friends: action.payload }
+                default: return state;
         }
 };
 
