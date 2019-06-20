@@ -9,6 +9,7 @@ export const SUCCESS = 'SUCCESS';
 export const ERROR = 'ERROR';
 export const DELETE = 'DELETE';
 export const UPDATE = 'UPDATE';
+export const ADD = 'ADD';
 
 export const login = creds => dispatch => {
         dispatch({ type: LOGIN_START });
@@ -38,13 +39,26 @@ export const deleter = (id) => dispatch => {
 };
 
 export const update = (id, name, age, email) => dispatch => {
-        const newFriend = {
+        const updateFriend = {
                 name: name,
                 age: age,
                 email: email
-        }
-        axiosWithAuth().put(`http://localhost:5000/api/friends/${id}`, newFriend)
+        };
+
+        axiosWithAuth().put(`http://localhost:5000/api/friends/${id}`, updateFriend)
                 .then(res => {
                         dispatch({ type: UPDATE, payload: res.data })
                 });
 };
+
+export const add = (name, age, email) => (dispatch) => {
+        const newFriend = {
+                name: name,
+                age: age,
+                email: email
+        };
+        axiosWithAuth().post('http://localhost:5000/api/friends', newFriend)
+                .then(res => {
+                        dispatch({ type: ADD, payload: res.data })
+                });
+}

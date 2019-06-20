@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetch, deleter, update } from '../../store/actions';
+import { fetch, deleter, add, update } from '../../store/actions';
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
@@ -39,6 +39,21 @@ class Friends extends React.Component {
                 });
         };
 
+//         updater = (e) => {
+//                 // this.props.update(id, this.state.name, this.state.age, this.state.email);
+
+// // console.log(e.target.id)
+//         // this.setState({
+//         //         name: '',
+//         //         age: '',
+//         //         email: ''
+//         // });
+//         };
+
+adder = () => {
+        this.props.add(this.state.name, this.state.age, this.state.email);
+}
+
         render() {
                 return (
                         <StyledDiv>
@@ -50,12 +65,25 @@ class Friends extends React.Component {
                                                 <p>{friend.age}</p>
                                                 <p>{friend.email}</p>
                                                 <button onClick={() => this.props.deleter(friend.id)}>Delete</button>
-                                                <button onClick={() => this.props.update(friend.id, this.state.name, this.state.age, this.state.email)}>update</button>
+                                                {/* <button id={friend.id} onClick={this.props.update(friend.id, this.state.name, this.state.age, this.state.email)}>update</button> */}
                                         </div>
                                 })}
-                                <input onChange={this.handleChange} name="name" type="text"/>
-                                <input onChange={this.handleChange} name="age" type="number"/>
-                                <input onChange={this.handleChange} name="email" type="text"/>
+                                <input
+                                 onChange={this.handleChange} 
+                                 name="name"
+                                  type="text"
+                                  value={this.state.name}/>
+                                <input
+                                 onChange={this.handleChange} 
+                                 name="age"
+                                  type="number"
+                                  value={this.state.age}/>
+                                <input
+                                 onChange={this.handleChange}
+                                  name="email"
+                                   type="text"
+                                   value={this.state.email}/>
+                                   <button onClick={this.adder} >Add</button>
                         </StyledDiv>
                 );
         }
@@ -69,4 +97,4 @@ const mapStateToProps = state => {
         }
 };
 
-export default connect(mapStateToProps, { fetch, deleter, update })(Friends);
+export default connect(mapStateToProps, { fetch, deleter, add, update })(Friends);
