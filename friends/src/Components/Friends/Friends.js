@@ -22,11 +22,11 @@ margin: 1rem;
 class Friends extends React.Component {
         constructor(props) {
                 super(props);
-                this.state = { 
+                this.state = {
                         name: '',
                         age: '',
                         email: ''
-                 }
+                }
         }
 
         componentDidMount = () => {
@@ -39,20 +39,20 @@ class Friends extends React.Component {
                 });
         };
 
-//         updater = (e) => {
-//                 // this.props.update(id, this.state.name, this.state.age, this.state.email);
+        // updateIt = (id) => {
+        //         this.props.update(id, this.state.name, this.state.age, this.state.email);
 
-// // console.log(e.target.id)
-//         // this.setState({
-//         //         name: '',
-//         //         age: '',
-//         //         email: ''
-//         // });
-//         };
 
-adder = () => {
-        this.props.add(this.state.name, this.state.age, this.state.email);
-}
+        // this.setState({
+        //         name: '',
+        //         age: '',
+        //         email: ''
+        // });
+        // };
+
+        adder = () => {
+                this.props.add(this.state.name, this.state.age, this.state.email);
+        };
 
         render() {
                 return (
@@ -64,26 +64,37 @@ adder = () => {
                                                 <h1>{friend.name}</h1>
                                                 <p>{friend.age}</p>
                                                 <p>{friend.email}</p>
-                                                <button onClick={() => this.props.deleter(friend.id)}>Delete</button>
-                                                {/* <button id={friend.id} onClick={this.props.update(friend.id, this.state.name, this.state.age, this.state.email)}>update</button> */}
+                                                <button onClick={() =>
+                                                        this.props.deleter(friend.id)}>
+                                                        Delete
+                                                                 </button>
+                                                <button onClick={() =>
+                                                        this.props.update(friend.id,
+                                                                this.state.name,
+                                                                this.state.age,
+                                                                this.state.email)}>
+                                                        update
+                                                                   </button>
                                         </div>
                                 })}
                                 <input
-                                 onChange={this.handleChange} 
-                                 name="name"
-                                  type="text"
-                                  value={this.state.name}/>
+                                        onChange={this.handleChange}
+                                        name="name"
+                                        type="text"
+                                        value={this.state.name} />
                                 <input
-                                 onChange={this.handleChange} 
-                                 name="age"
-                                  type="number"
-                                  value={this.state.age}/>
+                                        onChange={this.handleChange}
+                                        name="age"
+                                        type="number"
+                                        value={this.state.age} />
                                 <input
-                                 onChange={this.handleChange}
-                                  name="email"
-                                   type="text"
-                                   value={this.state.email}/>
-                                   <button onClick={this.adder} >Add</button>
+                                        onChange={this.handleChange}
+                                        name="email"
+                                        type="text"
+                                        value={this.state.email} />
+                                <button onClick={this.adder} >
+                                        Add
+                                           </button>
                         </StyledDiv>
                 );
         }

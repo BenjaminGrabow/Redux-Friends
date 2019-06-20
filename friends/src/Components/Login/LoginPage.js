@@ -6,7 +6,7 @@ import Loader from 'react-loader-spinner';
 class LoginPage extends React.Component {
         constructor(props) {
                 super(props);
-                this.state = { 
+                this.state = {
                         credentials: {
                                 username: '',
                                 password: ''
@@ -18,7 +18,7 @@ class LoginPage extends React.Component {
                 this.setState({
                         credentials: {
                                 ...this.state.credentials,
-                        [e.target.name]: e.target.value
+                                [e.target.name]: e.target.value
                         }
                 })
         };
@@ -26,46 +26,46 @@ class LoginPage extends React.Component {
         login = e => {
                 e.preventDefault();
                 this.props.login(this.state.credentials)
-                .then(() => {
-                  this.props.history.push('/protected')
-                })
+                        .then(() => {
+                                this.props.history.push('/protected')
+                        })
         };
 
 
-        render() { 
-                return ( 
+        render() {
+                return (
                         <div>
-                                <form 
-                                onSubmit={this.login}>
+                                <form
+                                        onSubmit={this.login}>
                                         <input
-                                        name="username"
-                                        onChange={this.handleChange}
-                                        value={this.state.username}
+                                                name="username"
+                                                onChange={this.handleChange}
+                                                value={this.state.username}
                                         />
                                         <input
-                                        name="password"
-                                        onChange={this.handleChange}
-                                        value={this.state.password}
+                                                name="password"
+                                                onChange={this.handleChange}
+                                                value={this.state.password}
                                         />
-                                        <button 
-                                        type="submit">
-                                        {this.props.isLoggingIn ? ( <Loader 
-                                        type="ThreeDots" 
-                                        color="#1f2a38"
-                                        height="12"
-                                        width="26" /> ) : 
-                                        ('Log In')}
+                                        <button
+                                                type="submit">
+                                                {this.props.isLoggingIn ? (<Loader
+                                                        type="ThreeDots"
+                                                        color="#1f2a38"
+                                                        height="12"
+                                                        width="26" />) :
+                                                        ('Log In')}
                                         </button>
                                 </form>
                         </div>
-                 );
+                );
         }
 }
 
 const mapStateToProps = state => {
-  return {
-    isLoggingIn: state.loggingIn
-  }
+        return {
+                isLoggingIn: state.loggingIn
+        }
 }
- 
-export default connect(mapStateToProps, {login})(LoginPage);
+
+export default connect(mapStateToProps, { login })(LoginPage);

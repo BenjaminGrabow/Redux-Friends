@@ -5,7 +5,7 @@ const initialState = {
         loading: false,
         error: null,
         loggingIn: false,
-}
+};
 
 const reducer = (state = initialState, action) => {
         switch (action.type) {
@@ -27,8 +27,8 @@ const reducer = (state = initialState, action) => {
                 case types.DELETE:
                         return { ...state, friends: action.payload };
 
-                // case types.UPDATE:
-                //         return { ...state, friends: action.payload };
+                case types.UPDATE:
+                        return { ...state, friends: action.payload };
 
                         case types.ADD:
                                 return { ...state, friends: action.payload}
@@ -37,6 +37,3 @@ const reducer = (state = initialState, action) => {
 };
 
 export default reducer;
-// switch(action.type) {
-        //         default: return state
-        // }

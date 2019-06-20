@@ -28,7 +28,7 @@ export const fetch = () => dispatch => {
                         dispatch({ type: SUCCESS, payload: res.data })
                 }).catch(err => {
                         dispatch({ type: ERROR })
-                })
+                });
 };
 
 export const deleter = (id) => dispatch => {
@@ -57,8 +57,9 @@ export const add = (name, age, email) => (dispatch) => {
                 age: age,
                 email: email
         };
+
         axiosWithAuth().post('http://localhost:5000/api/friends', newFriend)
                 .then(res => {
                         dispatch({ type: ADD, payload: res.data })
                 });
-}
+};
